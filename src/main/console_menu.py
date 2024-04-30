@@ -106,6 +106,8 @@ def determine_action(action: int) -> bool:
             database_actions.search_row()
         elif action == 4:
             print(database_actions.display_ordered_items())
+        elif action == 5:
+            database_actions.define_transferable()
         wait_for_enter()
         clear_screen()
     return True
@@ -117,5 +119,6 @@ menu_actions: dict[str, str] = {
     '3': 'Удаление записи по ключу',
     '4': 'Поиск необходимой информации',
     '5': 'Отобразить отсортированные данные',
+    '6': 'Узнать возможность транспортировки заготовок',
     '0': 'Завершение работы с базой данных',
 }

@@ -4,9 +4,12 @@ from src.data import materials
 from src.data import database
 
 
-def input_value(message: str) -> int | None:
+def input_value(message: str, result_type: str = 'int') -> int | float | None:
     try:
-        return int(input(message))
+        if result_type == 'int':
+            return int(input(message))
+        elif result_type == 'float':
+            return float(input(message))
     except ValueError:
         print('Неверное значение')
         if input('Хотите попробовать ещё раз? (y/n) ') == 'y':
@@ -46,6 +49,7 @@ def is_transferable(product_name: str, max_weight: float) -> bool:
     :return: bool - может ли перемещаться
     """
     product_weight = get_product_weight(product_name)
+    print(f'Вес заготовки: {product_weight}')
     return product_weight <= max_weight
 
 
@@ -181,4 +185,15 @@ def search_row() -> None:
             f'Факт производства: {value[3]}\n'
             f'Отклонение: {int(value[3]) - int(value[2])}'
         )
+    return None
+
+
+def define_transferable() -> None:
+    transferable: bool = is_transferable(input_key(False), input_value(
+        'Введите максимальный вес транспортного средства: ')
+    )
+    if transferable:
+        print('Перемещение возможно')
+    else:
+        print('Перемещание невозможно')
     return None
