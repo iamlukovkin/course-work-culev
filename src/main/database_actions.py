@@ -180,10 +180,12 @@ def search_row() -> None:
     if key:
         value = database[key]
         print(
-            f'{key}: {value[0]}\n'
-            f'План производства: {value[2]}\n'
-            f'Факт производства: {value[3]}\n'
-            f'Отклонение: {int(value[3]) - int(value[2])}'
+            f'{key}: [\n\t'
+            f'name: {value["name"]},\n\t'
+            f'material: {value["material"]},\n\t'
+            f'dimensions: {value["dimensions"]},\n\t'
+            f'count: {value["count"]}\n'
+            f']'
         )
     return None
 
